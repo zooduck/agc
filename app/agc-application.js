@@ -1,17 +1,15 @@
-var coffeeFunction, debug, test;
+var debug, test;
 
 debug = function() {
-  alert("kert");
-  return alert("bertYY");
+  alert("Kermit");
+  return alert("Frog");
 };
 
 test = function() {
-  return console.log("some texts");
+  return console.log("hallo console");
 };
 
 
-/* this is a multiline comment */
-
-coffeeFunction = function() {
-  return false;
-};
+/* 
+	This is a multiline comment in CoffeeScript
+ */

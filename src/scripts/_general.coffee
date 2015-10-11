@@ -1,6 +1,3 @@
-debug = ->
-	alert "Kermit"
-	alert "Frog"
 test = ->
 	console.log "hallo console"
 # This is a single line comment in CoffeeScript

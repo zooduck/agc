@@ -1,22 +1,3 @@
-// main.scss
-
-// ##################
-// @IMPORT
-// ##################
-@import "_variables";
+// bundle.scss
 @import "_grid";
 @import "_style";
-
-// ##################
-// Defaults
-// ##################
-*{
-	box-sizing:border-box
-}
-body{
-	margin:0 auto;
-	text-align:center;
-	font:$baseFont;
-	color:$baseColor;
-	background:$baseBackground;	
-}

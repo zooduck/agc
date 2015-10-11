@@ -1,6 +1,9 @@
-// _style.scss
-input[type=text]::after{
-	content:"";
-	display:block;
-	clear:none;
+/* >> _style.scss << */
+@import "_variables";
+body{
+	margin:0 auto;
+	text-align:center;
+	font:$baseFont;
+	color:$baseColor;
+	background:$baseBackground;
 }

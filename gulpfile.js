@@ -18,6 +18,7 @@ function fileChangeHandler(e, fname){
 // ---------------------
 // $ gulp
 // ---------------------
+// This will run all the dependencies listed when gulp is first run
 gulp.task('default', [
 	'watch',
 	'bundleCoffee',

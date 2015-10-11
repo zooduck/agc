@@ -1,3 +1,3 @@
 debug = ->
-	alert "kert"
-	alert "bertYY"
+	alert "Kermit"
+	alert "Frog"
