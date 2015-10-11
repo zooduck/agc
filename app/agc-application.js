@@ -1,8 +1,8 @@
-var debug, test;
+var coffeeFunction, debug, test;
 
 debug = function() {
   alert("kert");
-  return alert("berti");
+  return alert("bertYY");
 };
 
 test = function() {
@@ -11,3 +11,7 @@ test = function() {
 
 
 /* this is a multiline comment */
+
+coffeeFunction = function() {
+  return false;
+};
