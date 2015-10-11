@@ -1,0 +1,20 @@
+// main.scss
+
+// ##################
+// @IMPORT
+// ##################
+@import "_variables";
+
+// ##################
+// Defaults
+// ##################
+*{
+	box-sizing:border-box
+}
+body{
+	margin:0 auto;
+	text-align:center;
+	font:$baseFont;
+	color:$baseColor;
+	background:$baseBackground;	
+}
