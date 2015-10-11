@@ -4,15 +4,18 @@
 	<head>
 		<!-- meta -->
 		<meta charset='utf-8' />
-		<meta name='viewport' value='width=device-width, initial-scale=1, user-scalable=no' />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name='viewport' value='width=device-width, initial-scale=1' />
 		<!-- title -->
 		<title>AGC Demo</title>
 		<!-- style IMPORT -->
+		<link rel='stylesheet' type='text/css' href='../packages/bootstap.min.css' />
 		<!-- script IMPORT-->
-		<script src='packages/angular.min.js'></script>
-		<script src='packages/jquery.min.js'></script>
-		<script src='packages/underscore-min.js'></script>
-		<script src='packages/moment.js'></script>
+		<script src='../packages/angular.min.js'></script>
+		<script src='../packages/jquery.min.js'></script>
+		<script src='../packages/underscore-min.js'></script>
+		<script src='../packages/moment.js'></script>
+		<script src='../packages/bootstrap.min.js'></script>
 
 
 		<!-- style ZOODUCK -->
@@ -90,29 +93,7 @@
 		// Note: If two arguments are passed to .then on $.when
 		// then the first will handle success and the second
 		// will handle error. If only one argument is supplied
-		// this will handle success and there is no error handler	
-
-		
-
-			
-
-	
-
-		// ANGULAR XHR
-		/*$http({
-			url: "agc-database.php?_function=test",
-			method: "GET"
-
-		}).then(function successCallback(response){
-			console.log("XMLHttpResponseText:" + response);
-		}, function errorCallback(response){
-			console.log("XHR FAILED!");
-		});*/
-
-		
-
-
-
+		// this will handle success.
 
 
 		var foo = function(arg1, arg2){
@@ -134,9 +115,9 @@
 		};
 		var myCallbacks= $.Callbacks();
 		myCallbacks.add([foo, bar]);		
-		myCallbacks.fire("domper", " pomper"); // Note: This will send TWO 
-		// arguments to both functions (foo and bar) so each of those 
-		// functions will have an arguments array with TWO items
+		myCallbacks.fire("domper", " pomper");
+		 // Note: This will send TWO arguments to both functions (foo and bar)
+		 // so each of those functions will have an arguments object with TWO items
 		myCallbacks.fire();
 		</script>
 	
