@@ -1,9 +1,10 @@
 /* >> _style.scss << */
-@import "_variables";
 body{
 	margin:0 auto;
 	text-align:center;
 	font:$baseFont;
 	color:$baseColor;
-	background:$baseBackground;
+	background:$baseBackground;	
+	transition:all 0.3s;
+	display:flex;
 }

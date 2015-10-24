@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+<!-- index.html -->
+	<head>
+		<!-- meta -->
+		<meta charset='utf-8' />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name='viewport' value='width=device-width, initial-scale=1.0' />
+		<!-- title -->
+		<title>AGC Demo</title>
+		<!-- style IMPORT -->
+		<link rel='stylesheet' type='text/css' href='../packages/bootstrap.min.css' />
+		<!-- script IMPORT-->
+		<script src='../packages/angular.min.js'></script>
+		<script src='../packages/jquery.min.js'></script>
+		<script src='../packages/underscore-min.js'></script>
+		<script src='../packages/moment.js'></script>
+		<script src='../packages/bootstrap.min.js'></script>
+		<!-- NOTE: THESE SHOULD BE DEALT WITH BY GULP TO CONCAT INTO MAIN JS FILE, AND USE SOURCEMAPS TO SHOW ORIGINS -->
+
+
+		<!-- style ZOODUCK -->
+		<link rel='stylesheet' type='text/css' href='agc-stylesheet.css' />
+		<!-- script ZOODUCK -->
+		<script src='agc-application.js'></script>
+	
+	
+	</head>
+	<body>
+		<header>
+			<h1>AGC Demo</h1>
+		</header>
+	
+	
+		<div id='ajaxResponse'></div>
+
+		<script>
+		
+		// this will fire for ALL successful jQuery ajax requests
+		$(document).ajaxSuccess(function(){
+			console.log("AJAX REQUEST SUCCESS AT:" + new Date().toLocaleTimeString());
+		});
+
+		
+		
+		var obj = {_function:"TEST", action:"INSERT"}
+		$.each(obj, function(key, val){
+			console.log(key + "=>" + val);
+			// you can break out of loop by returning false
+			// return val !== "TEST";
+		});
+		// Vanilla JS equiv:
+		for(var key in obj){
+			console.log(key + "=>" + obj[key]);
+			// you can break out of loop using break
+			/*if(obj[key] === "TEST"){
+				break;
+			}*/
+		}
+		
+
+		
+		
+		// JQUERY XHR
+		// Note: method is alias of type and is only supported
+		// by versions of jQuery >= 1.9.0
+		// Note 2: $.ajax is wrapped in $.when which has a .then method
+		// which accepts 1 or 2 args i.e. successHandler(), errorHandler()
+		$.when($.ajax(
+		{
+			url:"agc-database.php",
+			method: "POST", // use type: <typeString> for jQuery < 1.9.0
+			success: function(data, textStatus, xhr){
+				console.log("$.ajax.success property starts here:");
+				console.log("data:" + data);
+				console.log("textStatus:" + textStatus);
+				console.log("xhr:" + xhr);
+				console.log("xhr.responseText:" + xhr.responseText);
+				console.log("$.ajax.success property ends");
+			},
+			//data: "_function=TEST&action=INSERT"			
+			data: obj
+		})).then(function(data, textStatus, xhr){
+			// SUCCESS!
+			console.log("$.when($.ajax).then starts here:")
+			console.log("textStatus:" + textStatus); // success
+			console.log("xhr.status:" + xhr.status + " / " + "xhr.readyState:" + xhr.readyState + "xhr.statusText:" + xhr.statusText);
+			console.log("$.when($.ajax).then ends")
+		}, function(data, textStatus, xhr){
+			// ERROR!
+			console.log(textStatus); // error
+			document.body.innerHTML += data.responseText;			
+		});
+		// Note: If two arguments are passed to .then on $.when
+		// then the first will handle success and the second
+		// will handle error. If only one argument is supplied
+		// this will handle success.
+
+
+		var foo = function(arg1, arg2){
+			if(arg1 && arg2){
+				console.log("foo:" + arg1 + arg2);
+			}else{
+				console.log("foo:" + "no args");
+			}
+			
+		};
+		var bar = function(arg1){
+			if(arguments.length == 2){
+				console.log("bar:" + arg1);
+				// Note: console.log(arguments[1]) would log: " pomper"		
+			}else{
+				console.log("bar:" + "no args");
+			}
+			
+		};
+		var myCallbacks= $.Callbacks();
+		myCallbacks.add([foo, bar]);		
+		myCallbacks.fire("domper", " pomper");
+		 // Note: This will send TWO arguments to both functions (foo and bar)
+		 // so each of those functions will have an arguments object with TWO items
+		myCallbacks.fire();
+		</script>
+	
+	
+	</body>
+</html>
