@@ -4,11 +4,39 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	concat = require('gulp-concat'),	
 	sourcemaps = require('gulp-sourcemaps'),
-	util = require('gulp-util');	
+	autoprefixer = require('gulp-autoprefixer'),
+	util = require('gulp-util');
 
+// ================================================
+// NOTE: Autoprefixer worrks on .css files only
+// ================================================
+
+// =================================================================
+// NOTE: When adding a dependency to a gulp task, using "return"
+// on that dependency task will ensure it is completed before
+// the parent task runs. In the following example, default will
+// only run once myDependency has completed:
+// gulp.task('defaut', ['myDependency'], function(){
+	// default tasks go here...
+// });
+// gulp.task('myDependency', function(){
+//	return gulp.src('src/**/*')
+//	.pipe(gulp.dest('public'));
+// });
+// =================================================================
 
 var sassFiles = "src/stylesheets/*.scss";
 var coffeeFiles = "src/scripts/*.coffee";
+var jsPackages = "packages/*.js";
+// NEED TO CREATE A TASK TO CONCAT ALL THESE PACKAGES INTO THE MAIN JS FILE USING SOURCEMAPS TO SHOW ORIGNS
+
+gulp.task('jsPackages', function(){
+	gulp.src(jsPackages)
+	.pipe(sourcemaps.init())
+	.pipe(concat('all-javascripts.js'))
+	.pipe(sourcemaps.write())
+	.pipe(gulp.dest('../app/'))
+})
 
 function fileChangeHandler(e, fname){
 	console.log("file: " + fname + " was " + e.type);
