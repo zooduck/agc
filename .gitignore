@@ -42,8 +42,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# ========================
-# Node Packages
-# ========================
+# =========================
+# Node Modules Directory
+# =========================
 
-#node_modules
+node_modules
