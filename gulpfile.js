@@ -30,7 +30,7 @@ var coffeeFiles = "src/scripts/*.coffee";
 var jsPackages = "packages/*.js";
 // NEED TO CREATE A TASK TO CONCAT ALL THESE PACKAGES INTO THE MAIN JS FILE USING SOURCEMAPS TO SHOW ORIGNS
 
-gulp.task('jsPackages', function(){
+gulp.task('all-javascripts', function(){
 	gulp.src(jsPackages)
 	.pipe(sourcemaps.init())
 	.pipe(concat('all-javascripts.js'))
