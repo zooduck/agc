@@ -1,4 +1,4 @@
-var coffeeFunction, debug, test;
+var coffeeF, coffeeFunction, debug, test;
 
 debug = function() {
   alert("Kermit");
@@ -16,4 +16,10 @@ test = function() {
 
 coffeeFunction = function(arg1, arg2) {
   return false;
+};
+
+coffeeF = function() {
+  if (a === 1) {
+    console.log(a);
+  }
 };

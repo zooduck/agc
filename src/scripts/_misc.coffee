@@ -6,3 +6,7 @@ test = ->
 ###
 coffeeFunction = (arg1, arg2) ->
 	false
+
+coffeeF = ->
+	console.log a if a == 1
+	return

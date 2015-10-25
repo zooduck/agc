@@ -11,7 +11,8 @@ var gulp = require('gulp'),
 	del = require('del'),
 	uglify = require('gulp-uglify'),
 	argv = require('yargs').argv,
-	gulpif = require('gulp-if');
+	gulpif = require('gulp-if'),
+	connect = require('gulp-connect');
 
 var first_run = 0;
 
@@ -40,31 +41,48 @@ var project = {
 // });
 // =================================================================
 
-/*
-var sassFiles = "src/stylesheets/*.scss";
-var coffeeFiles = "src/scripts/*.coffee";
-var jsPackages = "packages/*.js";
-*/
-// NEED TO CREATE A TASK TO CONCAT ALL THESE PACKAGES INTO THE MAIN JS FILE USING SOURCEMAPS TO SHOW ORIGNS
-
-
-
 // ---------------------
 // $ gulp
 // ---------------------
 // This will run all the dependencies listed when gulp is first run
-gulp.task('default', [
-	'all-javascripts',
-	'all-stylesheets',
-	'templates',	
-	'watch']
-);
+gulp.task('default', ['all-javascripts', 'all-stylesheets', 'templates', 'http-server', 'watch']);
+
+
+
+gulp.task('http-server', [], function(){	
+	connect.server({
+		root: 'app',
+		port: 8000,
+		livereload: true
+	});
+});
+
+gulp.task('reloadHTML', function(){
+	gulp.src('./app/*.html')
+	.pipe(connect.reload());
+});
+gulp.task('reloadCSS', function(){
+	gulp.src('./app/*.css')
+	.pipe(connect.reload());
+});
+gulp.task('reloadJS', function(){
+	gulp.src('./app/*.js')
+	.pipe(connect.reload());
+});
 
 // ---------------------
 // $ gulp watch
 // ---------------------
 // Watch for changes...
 gulp.task('watch', function(){
+
+	setTimeout(function(){
+		gulp.watch('./app/*.html', ['reloadHTML']);
+		gulp.watch('./app/*.css', ['reloadCSS']);
+		gulp.watch('./app/*.js', ['reloadJS']);
+	}, 5000); // start watching after 5 seconds	
+
+
 	gulp.watch('./src/templates/*.html', ['templates'])
 	.on('change', function(e){
 		var fname = path.basename(e.path);
@@ -93,12 +111,7 @@ gulp.task('watch', function(){
 		fileChangeHandler(e, fname);
 	});
 	// Watch the "src/packages" folder for changes to .js files
-	// Run concat-js-packages task if changes detected
-	// --------------------------------------------------------
-	// NOTE: This will not fire if new files are added
-	// as it only watches for changes to the files that exist
-	// at the time gulp.watch is started
-	// --------------------------------------------------------
+	// Run concat-js-packages task if changes detected	
 	gulp.watch('./src/packages/*.js', ['all-js-packages'])
 	.on('change', function(e){
 		var fname = path.basename(e.path);
@@ -106,11 +119,6 @@ gulp.task('watch', function(){
 	});
 	// Watch the "src/packages" folder for changes to .css files
 	// Run concat-css-packages task if changes detected
-	// --------------------------------------------------------
-	// NOTE: This will not fire if new files are added
-	// as it only watches for changes to the files that exist
-	// at the time gulp.watch is started
-	// --------------------------------------------------------
 	gulp.watch('./src/packages/*.css', ['all-css-packages'])
 	.on('change', function(e){
 		var fname = path.basename(e.path);
@@ -209,8 +217,6 @@ gulp.task('all-javascripts', ['all-js-packages', 'coffee2js'], function(){
 	.pipe(gulp.dest('./app'));	
 });
 
-
-
 // ---------------------
 // $ gulp sass2css
 // ---------------------
@@ -275,5 +281,5 @@ function fileChangeHandler(e, fname){
 };
 
 function errorHandler(e){
-	gutil.log(e);
+	gutil.log(e.name + ":" + e.message + " in " + e.filename);
 };
