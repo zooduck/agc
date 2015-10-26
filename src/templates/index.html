@@ -5,7 +5,7 @@
 		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 		<title>AGC Demo</title>
 		<!-- style IMPORT -->
-		<link href='packages.css' rel='stylesheet' type='text/css' />		
+		<link href='packages.css' rel='stylesheet' type='text/css' />
 		<!-- script IMPORT -->
 		<script src='packages.js'></script>
 		<!-- style ZOODUCK -->
@@ -15,9 +15,63 @@
 	</head>
 	<body>
 
+	
 	<header>
 		<h1>AGC Demo</h1>
 	</header>
+	
+	
+	<!-- ======= -->
+	<!-- SANDBOX -->
+	<!-- ======= -->
+	<style>		
+		@keyframes scroll-stripes{
+			0%{
+				background-position: 0px 0px;
+			}
+			100%{
+				background-position: -60px 0px;				
+			}
+		}
+		div.zoo-progress{
+			display:inline-block;
+			width:350px;
+			border:solid #eee 2px;
+			border-radius:5px;
+		}		
+		div.zoo-progress-bar{			
+			width:45%;
+			height:40px;
+			background-color:coral;
+			background-image: linear-gradient(45deg, rgba(178, 34, 34, 0.55) 25%, transparent 25%, transparent 50%, rgba(178, 34, 34, 0.55) 50%, rgba(178, 34, 34, 0.55) 75%, transparent 75%, transparent);
+			background-size:60px 60px;			
+		}
+		div.zoo-progress-bar.animate{
+			animation: scroll-stripes 2s linear 0s infinite;
+		}
+		.tsn-left-2{
+			transition: width 6s;
+		}
+		
+	</style>
+	
+	<div class='container'>
+
+		<div class='zoo-progress'>
+			<div class='zoo-progress-bar animate tsn-left-2' onclick='this.style.width = "100%"'></div>
+		</div>
+
+		<div style='padding:15px'>
+			<p><span class='label label-primary'>Example:</span> Animated progress bar using <code>background-image: linear-gradient</code> and <code>animation</code></p>
+			<p><kbd>Click the bar to see how it might look when progress changes</kbd></p>		
+		</div>
+
+		<blockquote class='text-left'>
+			<p>Example of a blockquote</p>
+			<footer>and the blockquote footer</footer>
+		</blockquote>	
+
+	</div>
 
 	</body>
 </html>
