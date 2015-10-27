@@ -33,21 +33,45 @@
 				background-position: -60px 0px;				
 			}
 		}
+		@keyframes scroll-stripes-v2{			
+			0%{
+				background-position: 0px 0px;
+			}
+			100%{
+				background-position: -100px 0px;				
+			}
+		}
 		div.zoo-progress{
 			display:inline-block;
 			width:350px;
 			border:solid #eee 2px;
 			border-radius:5px;
-		}		
-		div.zoo-progress-bar{			
+		}
+		div.zoo-progress-bar, div.zoo-progress-bar.v2, div.zoo-progress-bar.v3{		
 			width:45%;
 			height:40px;
 			background-color:coral;
 			background-image: linear-gradient(45deg, rgba(178, 34, 34, 0.55) 25%, transparent 25%, transparent 50%, rgba(178, 34, 34, 0.55) 50%, rgba(178, 34, 34, 0.55) 75%, transparent 75%, transparent);
 			background-size:60px 60px;			
 		}
+		div.zoo-progress-bar.v2{
+			background-size:100px 40px;
+		}
+		div.zoo-progress-bar.v3{
+			background-size:100px 20px;
+		}
+		div.zoo-progress-bar.v4{
+			background-size:15px 60px;
+		}
+		div.zoo-progress-bar.v5{
+			background-size:10px 40px;
+		}
+
 		div.zoo-progress-bar.animate{
 			animation: scroll-stripes 2s linear 0s infinite;
+		}
+		div.zoo-progress-bar.animate-v2{
+			animation: scroll-stripes-v2 2s linear 0s infinite;
 		}
 		.tsn-left-2{
 			transition: width 6s;
@@ -57,8 +81,25 @@
 	
 	<div class='container'>
 
-		<div class='zoo-progress'>
-			<div class='zoo-progress-bar animate tsn-left-2' onclick='this.style.width = "100%"'></div>
+		<div class='row'>
+			<div class='zoo-progress'>
+				<div class='zoo-progress-bar animate tsn-left-2' onclick='this.style.width = "100%"'></div>
+			</div>
+			<div class='zoo-progress'>
+				<div class='zoo-progress-bar v2 animate-v2 tsn-left-2' onclick='this.style.width = "100%"'></div>
+			</div>
+			<div class='zoo-progress'>
+				<div class='zoo-progress-bar v3 animate-v2 tsn-left-2' onclick='this.style.width = "100%"'></div>
+			</div>
+		</div>
+
+		<div class='row'>
+			<div class='zoo-progress'>
+				<div class='zoo-progress-bar v4 animate tsn-left-2' onclick='this.style.width = "100%"'></div>
+			</div>
+			<div class='zoo-progress'>
+				<div class='zoo-progress-bar v5 animate tsn-left-2' onclick='this.style.width = "100%"'></div>
+			</div>
 		</div>
 
 		<div style='padding:15px'>
