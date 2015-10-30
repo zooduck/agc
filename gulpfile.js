@@ -45,7 +45,10 @@ var project = {
 // $ gulp
 // ---------------------
 // This will run all the dependencies listed when gulp is first run
-gulp.task('default', ['all-javascripts', 'all-stylesheets', 'templates', 'http-server', 'watch']);
+gulp.task('default', ['all-javascripts', 'all-stylesheets', 'templates', 'http-server', 'watch'], function(cb){
+	cb();
+	gutil.log(gutil.colors.gray("Gulp ready and watching for changes..."));
+});
 
 
 
